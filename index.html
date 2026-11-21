@@ -6,59 +6,79 @@
 <title>New Windsor Fire Department - Dashboard</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
-body{background:#02122b;color:#fff;width:1920px;height:1080px;overflow:hidden;display:flex;flex-direction:column}
-.top{display:flex;align-items:center;gap:20px;padding:10px 22px;background:linear-gradient(180deg,#041a3d,#071f4a);height:150px;flex-shrink:0}
-.top h1{font-size:44px;color:#4ec8f5;line-height:1;font-weight:900;letter-spacing:.5px;text-shadow:0 0 12px rgba(78,200,245,.35)}
-.top h2{font-size:32px;color:#4ec8f5;line-height:1.1;font-weight:900;letter-spacing:1px}
-.weather{flex:1;text-align:center}
-.weather small{color:#7a8fd0;font-size:16px;letter-spacing:4px;font-weight:700}
-.weather .temp{font-size:42px;font-weight:900;color:#4ec8f5;line-height:1.1}
-.weather .temp span{font-size:21px;color:#fff;font-weight:700}
-.weather .dist{font-size:22px;color:#4ec8f5;font-weight:900;letter-spacing:1px}
-.clock{text-align:right;min-width:280px}
-.clock .time{font-size:72px;font-weight:900;line-height:.9}
-.clock .date{font-size:20px;color:#4ec8f5;font-weight:700;margin-top:4px}
-.alert{background:linear-gradient(90deg,#ea580c,#f97316,#ea580c);color:#000;font-weight:900;font-size:24px;text-align:center;padding:10px;flex-shrink:0;white-space:nowrap;overflow:hidden}
-.main{flex:1;display:grid;grid-template-columns:1.15fr 1.35fr 1fr;gap:14px;padding:14px;min-height:0}
+html,body{width:100%;height:100%;overflow:hidden}
+body{background:#02122b;color:#fff;display:flex;flex-direction:column;min-height:100vh}
+/* TOP - fluid */
+.top{display:flex;align-items:center;gap:clamp(10px,1.5vw,20px);padding:clamp(6px,0.8vh,12px) clamp(10px,1.5vw,22px);background:linear-gradient(180deg,#041a3d,#071f4a);flex-shrink:0}
+.top img{width:clamp(70px,8vw,130px);height:clamp(70px,8vw,130px);object-fit:contain;flex-shrink:0}
+.top h1{font-size:clamp(20px,2.6vw,44px);color:#4ec8f5;line-height:1;font-weight:900;white-space:nowrap}
+.top h2{font-size:clamp(15px,1.9vw,32px);color:#4ec8f5;line-height:1.1;font-weight:900;white-space:nowrap}
+.weather{flex:1;text-align:center;min-width:0}
+.weather small{color:#7a8fd0;font-size:clamp(10px,0.9vw,16px);letter-spacing:3px;font-weight:700}
+.weather .temp{font-size:clamp(18px,2.3vw,42px);font-weight:900;color:#4ec8f5;line-height:1.1;white-space:nowrap}
+.weather .temp span{font-size:clamp(12px,1.2vw,21px);color:#fff;font-weight:700}
+.weather .dist{font-size:clamp(11px,1.2vw,22px);color:#4ec8f5;font-weight:900;white-space:nowrap}
+.clock{text-align:right;flex-shrink:0}
+.clock .time{font-size:clamp(28px,3.8vw,72px);font-weight:900;line-height:.9}
+.clock .date{font-size:clamp(11px,1vw,20px);color:#4ec8f5;font-weight:700;margin-top:3px;white-space:nowrap}
+.alert{background:linear-gradient(90deg,#ea580c,#f97316,#ea580c);color:#000;font-weight:900;font-size:clamp(13px,1.3vw,24px);text-align:center;padding:clamp(6px,0.8vh,10px);flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* MAIN - 3 columns on TV, stacks nicely on small laptop */
+.main{flex:1;display:grid;grid-template-columns:1.15fr 1.35fr 1fr;gap:clamp(8px,0.9vw,14px);padding:clamp(8px,1vh,14px);min-height:0}
 .card{background:linear-gradient(180deg,#0a2f68,#061a3d);border:1px solid #2a6fd8;border-radius:12px;overflow:hidden;display:flex;flex-direction:column;min-height:0}
-.card-head{background:linear-gradient(90deg,#0ea5e9,#0369a1);color:#fff;font-weight:900;font-size:22px;padding:12px 14px;letter-spacing:.5px;display:flex;align-items:center;gap:10px}
-.inner{padding:14px;display:flex;flex-direction:column;gap:12px;flex:1;min-height:0;overflow:hidden}
-.truck{border:1px solid rgba(255,255,255,.28);border-radius:10px;padding:14px;background:rgba(0,0,0,.22)}
-.truck-top{display:flex;justify-content:space-between;align-items:center}
-.truck h3{font-size:28px;font-weight:900}
-.truck .in{color:#22c55e;font-weight:900;font-size:17px}
-.truck p{font-size:16px;line-height:1.6;color:#e2e8f0;margin-top:6px}
+.card-head{background:linear-gradient(90deg,#0ea5e9,#0369a1);color:#fff;font-weight:900;font-size:clamp(14px,1.3vw,22px);padding:clamp(7px,1vh,12px) clamp(10px,1vw,14px);white-space:nowrap}
+.inner{padding:clamp(8px,1vh,14px);display:flex;flex-direction:column;gap:clamp(7px,0.9vh,12px);flex:1;min-height:0;overflow:hidden}
+.truck{border:1px solid rgba(255,255,255,.28);border-radius:10px;padding:clamp(8px,1vh,14px);background:rgba(0,0,0,.22)}
+.truck-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.truck h3{font-size:clamp(16px,1.6vw,28px);font-weight:900;white-space:nowrap}
+.truck .in{color:#22c55e;font-weight:900;font-size:clamp(11px,0.95vw,17px);white-space:nowrap}
+.truck p{font-size:clamp(12px,0.95vw,16px);line-height:1.5;color:#e2e8f0;margin-top:4px}
 .truck p b{color:#fff}
-.oos{background:#991b1b;color:#fff;text-align:center;font-weight:900;font-size:19px;padding:11px;letter-spacing:1px}
-.bulletin-big{background:#f97316;color:#000;border-radius:10px;padding:14px}
-.bulletin-big h3{font-size:26px;font-weight:900}
-.bulletin-big p{font-size:18px;font-weight:700;line-height:1.5;margin-top:6px}
-.list-item{border:1px solid rgba(255,255,255,.25);border-radius:10px;padding:12px 14px;background:rgba(0,0,0,.2);display:flex;gap:12px;align-items:flex-start}
-.date-box{background:#0ea5e9;color:#fff;border-radius:8px;text-align:center;min-width:72px;padding:8px 4px;flex-shrink:0}
-.date-box b{font-size:28px;line-height:1;display:block}
-.date-box span{font-size:13px;font-weight:900;letter-spacing:1px}
-.list-item h4{font-size:19px;color:#fff}
-.list-item p{font-size:15px;color:#cbd5e1;line-height:1.45;margin-top:3px}
-.tag{display:inline-block;background:#22c55e;color:#000;font-size:12px;font-weight:900;padding:2px 8px;border-radius:20px;margin-top:6px}
+.oos{background:#991b1b;color:#fff;text-align:center;font-weight:900;font-size:clamp(12px,1.1vw,19px);padding:clamp(7px,1vh,11px)}
+.bulletin-big{background:#f97316;color:#000;border-radius:10px;padding:clamp(9px,1.2vh,14px)}
+.bulletin-big h3{font-size:clamp(15px,1.5vw,26px);font-weight:900}
+.bulletin-big p{font-size:clamp(12px,1vw,18px);font-weight:700;line-height:1.5;margin-top:4px}
+.list-item{border:1px solid rgba(255,255,255,.25);border-radius:10px;padding:clamp(8px,1vh,12px);background:rgba(0,0,0,.2);display:flex;gap:10px;align-items:flex-start}
+.date-box{background:#0ea5e9;color:#fff;border-radius:8px;text-align:center;min-width:clamp(50px,4vw,72px);padding:6px 2px;flex-shrink:0}
+.date-box b{font-size:clamp(18px,1.6vw,28px);line-height:1;display:block}
+.date-box span{font-size:clamp(9px,0.7vw,13px);font-weight:900;letter-spacing:1px}
+.list-item h4{font-size:clamp(13px,1.1vw,19px);color:#fff}
+.list-item p{font-size:clamp(11px,0.85vw,15px);color:#cbd5e1;line-height:1.4;margin-top:2px}
+.tag{display:inline-block;background:#22c55e;color:#000;font-size:clamp(9px,0.7vw,12px);font-weight:900;padding:2px 8px;border-radius:20px;margin-top:5px}
 .tag.orange{background:#f97316}
 .tag.blue{background:#4ec8f5}
 .tag.yellow{background:#fde047}
-.cal-row{display:flex;gap:12px;align-items:center;border-bottom:1px solid rgba(255,255,255,.18);padding:11px 2px}
+.cal-row{display:flex;gap:10px;align-items:center;border-bottom:1px solid rgba(255,255,255,.18);padding:clamp(6px,0.8vh,11px) 2px}
 .cal-row:last-child{border-bottom:none}
-.cal-date{background:#fff;color:#000;border-radius:8px;min-width:64px;text-align:center;padding:7px 2px;flex-shrink:0}
-.cal-date b{font-size:26px;display:block;line-height:1}
-.cal-date span{font-size:12px;font-weight:900;color:#0369a1}
-.cal-row h4{font-size:18px}
-.cal-row p{font-size:14px;color:#cbd5e1;margin-top:2px}
-.footer{background:linear-gradient(180deg,#0a2f68,#041a3d);color:#fde047;text-align:center;font-weight:900;font-size:32px;letter-spacing:1px;padding:11px;border-top:3px solid #0ea5e9;flex-shrink:0}
+.cal-date{background:#fff;color:#000;border-radius:8px;min-width:clamp(48px,3.8vw,64px);text-align:center;padding:5px 2px;flex-shrink:0}
+.cal-date b{font-size:clamp(16px,1.5vw,26px);display:block;line-height:1}
+.cal-date span{font-size:clamp(9px,0.7vw,12px);font-weight:900;color:#0369a1}
+.cal-row h4{font-size:clamp(12px,1vw,18px)}
+.cal-row p{font-size:clamp(11px,0.85vw,14px);color:#cbd5e1;margin-top:1px}
+.footer{background:linear-gradient(180deg,#0a2f68,#041a3d);color:#fde047;text-align:center;font-weight:900;font-size:clamp(16px,1.8vw,32px);padding:clamp(7px,1vh,11px);border-top:3px solid #0ea5e9;flex-shrink:0;white-space:nowrap;overflow:hidden}
 .green{color:#22c55e}
+/* LAPTOP / SMALL SCREEN - stack to 2 columns so nothing gets squished */
+@media(max-width:1100px){
+.main{grid-template-columns:1fr 1fr;overflow-y:auto}
+.main .card:last-child{grid-column:1 / -1}
+.top h1{white-space:normal}
+.top h2{white-space:normal}
+}
+/* PHONE - single column */
+@media(max-width:650px){
+html,body{overflow:auto}
+body{height:auto}
+.main{grid-template-columns:1fr;overflow:visible}
+.top{flex-wrap:wrap;justify-content:center;text-align:center}
+.weather{order:3;width:100%}
+.clock{text-align:center}
+}
 </style>
 </head>
 <body>
 
 <div class="top">
-<img src="logo.png" alt="33" style="width:130px;height:130px;object-fit:contain;flex-shrink:0">
-<div style="flex-shrink:0">
+<img src="logo.png" alt="33">
+<div>
 <h1>NEW WINDSOR FIRE DEPARTMENT</h1>
 <h2>QUASSAICK BRIDGE FIRE DISTRICT</h2>
 </div>
@@ -77,119 +97,44 @@ body{background:#02122b;color:#fff;width:1920px;height:1080px;overflow:hidden;di
 
 <div class="main">
 
-<!-- LEFT: TRUCK DUTY -->
 <div class="card">
 <div class="card-head">🚒 TRUCK DUTY SCHEDULE</div>
 <div class="inner">
-<p style="text-align:center;color:#a5b4fc;font-size:14px;font-weight:700">DRIVER / OFFICER / 3 FIREFIGHTERS PER TRUCK</p>
-
-<div class="truck">
-<div class="truck-top"><h3>ENGINE 444</h3><div class="in">● IN SERVICE</div></div>
-<p><b>Driver:</b> Capt. R. Morano &nbsp;|&nbsp; <b>Officer:</b> Lt. J. Patel<br><b>FF:</b> K. Lee • M. Chen • A. Ruiz</p>
-</div>
-
-<div class="truck">
-<div class="truck-top"><h3>ENGINE 446</h3><div class="in">● IN SERVICE</div></div>
-<p><b>Driver:</b> Capt. D. Hayes &nbsp;|&nbsp; <b>Officer:</b> Lt. S. Kim<br><b>FF:</b> T. Brooks • L. Alvarez • R. Stone</p>
-</div>
-
-<div class="truck">
-<div class="truck-top"><h3>SQUAD 445</h3><div class="in">● IN SERVICE</div></div>
-<p><b>Driver:</b> Capt. M. O'Neil &nbsp;|&nbsp; <b>Officer:</b> Lt. P. Garcia<br><b>FF:</b> J. Wu • E. Doyle • S. Turner</p>
-</div>
-
-<div class="truck">
-<div class="truck-top"><h3>UTILITY 448</h3><div class="in">● IN SERVICE</div></div>
-<p><b>Driver:</b> F. Clark &nbsp;|&nbsp; <b>Officer:</b> Lt. N. Rossi<br><b>FF:</b> K. Singh • D. Miller • B. Ortiz</p>
-</div>
+<p style="text-align:center;color:#a5b4fc;font-size:clamp(11px,0.85vw,14px);font-weight:700">DRIVER / OFFICER / 3 FIREFIGHTERS PER TRUCK</p>
+<div class="truck"><div class="truck-top"><h3>ENGINE 444</h3><div class="in">● IN SERVICE</div></div><p><b>Driver:</b> Capt. R. Morano | <b>Officer:</b> Lt. J. Patel<br><b>FF:</b> K. Lee • M. Chen • A. Ruiz</p></div>
+<div class="truck"><div class="truck-top"><h3>ENGINE 446</h3><div class="in">● IN SERVICE</div></div><p><b>Driver:</b> Capt. D. Hayes | <b>Officer:</b> Lt. S. Kim<br><b>FF:</b> T. Brooks • L. Alvarez • R. Stone</p></div>
+<div class="truck"><div class="truck-top"><h3>SQUAD 445</h3><div class="in">● IN SERVICE</div></div><p><b>Driver:</b> Capt. M. O'Neil | <b>Officer:</b> Lt. P. Garcia<br><b>FF:</b> J. Wu • E. Doyle • S. Turner</p></div>
+<div class="truck"><div class="truck-top"><h3>UTILITY 448</h3><div class="in">● IN SERVICE</div></div><p><b>Driver:</b> F. Clark | <b>Officer:</b> Lt. N. Rossi<br><b>FF:</b> K. Singh • D. Miller • B. Ortiz</p></div>
 </div>
 <div class="oos">● UTILITY 1 &nbsp; ● OUT OF SERVICE</div>
 </div>
 
-<!-- MIDDLE: TRAINING + EVENTS -->
 <div class="card">
 <div class="card-head">📋 TRAINING BULLETIN & EVENTS</div>
 <div class="inner">
-
-<div class="bulletin-big">
-<h3>🔥 TRAINING BULLETIN - THIS WEEK</h3>
-<p>MONDAY 7:00 PM - Drill: Hose Advancement & Search<br>
-Bring Full PPE • SCBA Check Required • Station 1 Bay</p>
-</div>
-
-<div class="list-item">
-<div class="date-box"><b>24</b><span>NOV</span></div>
-<div><h4>Company Drill - Ladder Operations</h4><p>7:00 PM - Station 1 • All Members • Class A Uniform</p><span class="tag">TRAINING</span></div>
-</div>
-
-<div class="list-item">
-<div class="date-box"><b>26</b><span>NOV</span></div>
-<div><h4>Thanksgiving Standby Crew</h4><p>8 AM - 8 PM • Volunteers Needed • Sign Up At Station</p><span class="tag orange">EVENT</span></div>
-</div>
-
-<div class="list-item">
-<div class="date-box"><b>28</b><span>NOV</span></div>
-<div><h4>Apparatus Check & Equipment Inventory</h4><p>9:00 AM - All Trucks • Officers + Drivers</p><span class="tag blue">MAINTENANCE</span></div>
-</div>
-
-<div class="list-item">
-<div class="date-box"><b>30</b><span>NOV</span></div>
-<div><h4>CPR / First Aid Refresher</h4><p>6:30 PM - Meeting Room • Bring Certification Card</p><span class="tag yellow">REQUIRED</span></div>
-</div>
-
+<div class="bulletin-big"><h3>🔥 TRAINING BULLETIN - THIS WEEK</h3><p>MONDAY 7:00 PM - Drill: Hose Advancement & Search<br>Bring Full PPE • SCBA Check Required • Station 1 Bay</p></div>
+<div class="list-item"><div class="date-box"><b>24</b><span>NOV</span></div><div><h4>Company Drill - Ladder Operations</h4><p>7:00 PM - Station 1 • All Members • Class A Uniform</p><span class="tag">TRAINING</span></div></div>
+<div class="list-item"><div class="date-box"><b>26</b><span>NOV</span></div><div><h4>Thanksgiving Standby Crew</h4><p>8 AM - 8 PM • Volunteers Needed • Sign Up At Station</p><span class="tag orange">EVENT</span></div></div>
+<div class="list-item"><div class="date-box"><b>28</b><span>NOV</span></div><div><h4>Apparatus Check & Equipment Inventory</h4><p>9:00 AM - All Trucks • Officers + Drivers</p><span class="tag blue">MAINTENANCE</span></div></div>
+<div class="list-item"><div class="date-box"><b>30</b><span>NOV</span></div><div><h4>CPR / First Aid Refresher</h4><p>6:30 PM - Meeting Room • Bring Certification Card</p><span class="tag yellow">REQUIRED</span></div></div>
 </div>
 </div>
 
-<!-- RIGHT: CALENDAR -->
 <div class="card">
 <div class="card-head">📅 CALENDAR OF EVENTS</div>
 <div class="inner">
-
-<div class="cal-row">
-<div class="cal-date"><b>22</b><span>SUN</span></div>
-<div><h4>Sunday Duty Crew</h4><p>8 AM - Station Coverage</p></div>
+<div class="cal-row"><div class="cal-date"><b>22</b><span>SUN</span></div><div><h4>Sunday Duty Crew</h4><p>8 AM - Station Coverage</p></div></div>
+<div class="cal-row"><div class="cal-date"><b>24</b><span>MON</span></div><div><h4>Weekly Drill</h4><p>7 PM - Ladder Ops</p></div></div>
+<div class="cal-row"><div class="cal-date"><b>26</b><span>WED</span></div><div><h4>Thanksgiving Standby</h4><p>8 AM - 8 PM</p></div></div>
+<div class="cal-row"><div class="cal-date"><b>27</b><span>THU</span></div><div><h4>Thanksgiving Day</h4><p>Holiday Coverage</p></div></div>
+<div class="cal-row"><div class="cal-date"><b>30</b><span>SUN</span></div><div><h4>CPR Refresher</h4><p>6:30 PM - Meeting Room</p></div></div>
+<div class="cal-row"><div class="cal-date"><b>02</b><span>DEC</span></div><div><h4>District Meeting</h4><p>7 PM - Commissioners</p></div></div>
+<div class="cal-row"><div class="cal-date"><b>05</b><span>DEC</span></div><div><h4>Toy Drive Kickoff</h4><p>10 AM - Station 1</p></div></div>
+<div class="cal-row"><div class="cal-date"><b>13</b><span>DEC</span></div><div><h4>Holiday Parade</h4><p>4 PM - Downtown</p></div></div>
+<div style="background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.2);border-radius:10px;padding:10px;text-align:center;margin-top:auto">
+<p style="font-size:clamp(13px,1vw,16px);font-weight:900;color:#fde047">MEMBER: RESPONDING 12 / 18</p>
+<p style="font-size:clamp(12px,0.9vw,15px);margin-top:4px"><span class="green">●</span> NO ACTIVE INCIDENTS</p>
 </div>
-
-<div class="cal-row">
-<div class="cal-date"><b>24</b><span>MON</span></div>
-<div><h4>Weekly Drill</h4><p>7 PM - Ladder Ops</p></div>
-</div>
-
-<div class="cal-row">
-<div class="cal-date"><b>26</b><span>WED</span></div>
-<div><h4>Thanksgiving Standby</h4><p>8 AM - 8 PM</p></div>
-</div>
-
-<div class="cal-row">
-<div class="cal-date"><b>27</b><span>THU</span></div>
-<div><h4>Thanksgiving Day</h4><p>Holiday Coverage</p></div>
-</div>
-
-<div class="cal-row">
-<div class="cal-date"><b>30</b><span>SUN</span></div>
-<div><h4>CPR Refresher</h4><p>6:30 PM - Meeting Room</p></div>
-</div>
-
-<div class="cal-row">
-<div class="cal-date"><b>02</b><span>DEC</span></div>
-<div><h4>District Meeting</h4><p>7 PM - Commissioners</p></div>
-</div>
-
-<div class="cal-row">
-<div class="cal-date"><b>05</b><span>DEC</span></div>
-<div><h4>Toy Drive Kickoff</h4><p>10 AM - Station 1</p></div>
-</div>
-
-<div class="cal-row">
-<div class="cal-date"><b>13</b><span>DEC</span></div>
-<div><h4>Holiday Parade</h4><p>4 PM - Downtown</p></div>
-</div>
-
-<div style="background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.2);border-radius:10px;padding:12px;text-align:center;margin-top:4px">
-<p style="font-size:16px;font-weight:900;color:#fde047">MEMBER: RESPONDING 12 / 18</p>
-<p style="font-size:15px;margin-top:4px"><span class="green">●</span> NO ACTIVE INCIDENTS</p>
-</div>
-
 </div>
 </div>
 
