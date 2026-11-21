@@ -1,1 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Quassaick Bridge Fire District - Dashboard</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
+body{background:#04122e;color:#fff;height:100vh;overflow:hidden;display:flex;flex-direction:column}
+.top{display:flex;align-items:center;gap:16px;padding:8px 16px;background:linear-gradient(90deg,#071a3d,#0a2a66)}
+.top img{height:92px;width:auto}
+.top h1{font-size:34px;color:#6fc3ff;letter-spacing:.5px;line-height:1}
+.top h2{font-size:24px;color:#6fc3ff;letter-spacing:1px}
+.weather{flex:1;text-align:center}
+.weather small{color:#8ab4ff;font-size:15px;letter-spacing:2px;font-weight:700}
+.weather .temp{font-size:36px;font-weight:900;color:#6fc3ff}
+.weather .temp span{font-size:18px;color:#fff;font-weight:400}
+.weather .dist{font-size:18px;color:#6fc3ff;font-weight:700;letter-spacing:1px}
+.clock{text-align:right;min-width:210px}
+.clock .time{font-size:58px;font-weight:900;line-height:.9}
+.clock .date{font-size:18px;color:#6fc3ff;font-weight:700}
+.alert{background:linear-gradient(90deg,#c81e1e,#ff3b30,#c81e1e);color:#ffeb3b;font-weight:900;font-size:22px;text-align:center;padding:9px 10px;white-space:nowrap;overflow:hidden}
+.alert.clear{background:#ff8c00;color:#000}
+.alert span{color:#fff}
+.main{flex:1;display:grid;grid-template-columns:1fr 1.35fr 1fr;gap:12px;padding:12px}
+.card{background:linear-gradient(180deg,#0d2a5e,#081a3d);border:1px solid #2a6fd8;border-radius:10px;overflow:hidden;display:flex;flex-direction:column}
+.card-head{background:#1a6fc0;color:#fff;font-weight:900;font-size:18px;padding:9px 12px;letter-spacing:.5px}
+.inner{padding:10px 12px;display:flex;flex-direction:column;gap:10px;flex:1}
+.box{border:1px solid #2a6fd8;border-radius:8px;padding:10px 12px;background:rgba(0,0,0,.18)}
+.box h4{color:#ff6b35;font-size:20px}
+.box p{font-size:16px;font-weight:700;margin-top:4px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.truck{border:1px solid #2a6fd8;border-radius:8px;padding:12px;background:rgba(0,0,0,.18);text-align:center}
+.truck h3{font-size:24px}
+.truck .in{color:#22c55e;font-weight:900;margin:6px 0}
+.truck p{font-size:13px;line-height:1.5;color:#dbeafe}
+.truck small{color:#93c5fd}
+.oos{background:#8b1a1a;color:#fff;text-align:center;font-weight:900;font-size:18px;padding:10px;border-radius:8px;letter-spacing:1px}
+.photo{width:100%;height:180px;object-fit:cover;border-radius:8px;display:block}
+.members{columns:2;column-gap:16px;list-style:none}
+.members li{font-size:15px;padding:3px 0;color:#e2e8f0}
+.members li::before{content:"● ";color:#22c55e;font-size:11px}
+.footer{background:linear-gradient(90deg,#071a3d,#0a2a66);color:#ffeb3b;text-align:center;font-weight:900;font-size:28px;letter-spacing:1px;padding:10px;border-top:2px solid #1e4fa3}
+.green{color:#22c55e}
+@media(max-width:900px){.main{grid-template-columns:1fr}.top h1{font-size:22px}}
+</style>
+</head>
+<body>
 
+<div class="top">
+<img src="logo.png" alt="33 Logo">
+<div>
+<h1>NEW WINDSOR FIRE DEPARTMENT</h1>
+<h2>QUASSAICK BRIDGE FIRE DISTRICT</h2>
+</div>
+<div class="weather">
+<small>CURRENT WEATHER</small><br>
+<div class="temp"><span id="temp">38°F</span> <span id="cond">Partly Cloudy • Wind 8 mph</span></div>
+<div class="dist">QUASSAICK BRIDGE FIRE DISTRICT</div>
+</div>
+<div class="clock">
+<div class="time" id="clock">21:15</div>
+<div class="date" id="date">Saturday November 21 2026</div>
+</div>
+</div>
+
+<div class="alert" id="tickerBar"><div id="tickerText">⚠️ WEATHER ALERT: FLOOD WATCH - Orange County - Until 11:00 PM - Heavy Rain / Flash Flooding Possible</div></div>
+
+<div class="main">
+<!-- LEFT -->
+<div class="card">
+<div class="card-head">APPARATUS ORDER OF RESPONSE</div>
+<div class="inner">
+<div class="box"><h4>STRUCTURE FIRE</h4><p>ENGINE 444 → ENGINE 446 → SQUAD 445</p></div>
+<div class="box"><h4>MVA</h4><p>SQUAD 445 → ENGINE 446 → ENGINE 444</p></div>
+<div class="box"><h4>HAZARDOUS MATERIAL</h4><p>ENGINE 446 → SQUAD 445</p></div>
+<div class="box"><h4>PUBLIC SERVICE CALL</h4><p>UTILITY 448</p></div>
+</div>
+</div>
+
+<!-- MIDDLE -->
+<div class="card">
+<div class="card-head">TRUCK DUTY SCHEDULE</div>
+<div class="inner">
+<p style="text-align:center;color:#93c5fd;font-size:13px;font-weight:700">DRIVER / OFFICER / 3 FIREFIGHTERS PER TRUCK</p>
+<div class="grid2">
+<div class="truck"><h3>ENGINE 444</h3><div class="in">● IN SERVICE</div><p>Driver: Capt. R. Morano | Officer: Lt. J. Patel<br>FF: K. Lee • M. Chen • A. Ruiz</p></div>
+<div class="truck"><h3>ENGINE 446</h3><div class="in">● IN SERVICE</div><p>Driver: Capt. D. Hayes | Officer: Lt. S. Kim<br>FF: T. Brooks • L. Alvarez • R. Stone</p></div>
+<div class="truck"><h3>SQUAD 445</h3><div class="in">● IN SERVICE</div><p>Driver: Capt. M. O'Neil | Officer: Lt. P. Garcia<br>FF: J. Wu • E. Doyle • S. Turner</p></div>
+<div class="truck"><h3>UTILITY 448</h3><div class="in">● IN SERVICE</div><p>Driver: F. Clark | Officer: Lt. N. Rossi<br>FF: K. Singh • D. Miller • B. Ortiz</p></div>
+</div>
+<div class="oos">● UTILITY 1 &nbsp;&nbsp; ● OUT OF SERVICE</div>
+</div>
+</div>
+
+<!-- RIGHT -->
+<div class="card">
+<img src="truck.jpg" class="photo" alt="Engine 444">
+<div class="card-head" style="margin-top:10px">PHOTO / INCIDENT</div>
+<div class="inner" style="flex:none">
+<p style="font-size:16px"><span style="color:#93c5fd">Incident:</span> &nbsp; <b>No Active Incident</b></p>
+<p style="font-size:16px"><span style="color:#93c5fd">Status:</span> &nbsp; <b class="green">● NO ACTIVE INCIDENTS</b></p>
+<p style="font-size:16px">MEMBER: RESPONDING 12/18</p>
+</div>
+<div class="inner">
+<ul class="members" id="memberList">
+<li>J. Murphy</li><li>R. Delgado</li><li>L. Chen</li><li>M. O'Connor</li><li>S. Diaz</li><li>T. Nguyen</li>
+<li>K. Lee</li><li>M. Chen</li><li>A. Ruiz</li><li>D. Miller</li><li>B. Ortiz</li><li>P. Garcia</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div class="footer">NEW WINDSOR'S BRAVEST • 90 YEARS OF SERVICE</div>
+
+<script>
+function tick(){
+let d=new Date();
+document.getElementById('clock').textContent=d.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit',hour12:false});
+document.getElementById('date').textContent=d.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
+}
+tick(); setInterval(tick,10000);
+
+async function loadWeather(){
+try{
+let r=await fetch('https://api.open-meteo.com/v1/forecast?latitude=41.47&longitude=-74.02&current=temperature_2m,weather_code,wind_speed_10m&temperature_unit=fahrenheit&wind_speed_unit=mph&timezone=America%2FNew_York');
+let j=await r.json(); let t=Math.round(j.current.temperature_2m); let w=Math.round(j.current.wind_speed_10m);
+let code=j.current.weather_code; let cond=code==0?'Clear':code<=3?'Partly Cloudy':code<=48?'Foggy':code<=67?'Rain':code<=77?'Snow':'Cloudy';
+document.getElementById('temp').textContent=t+'°F';
+document.getElementById('cond').textContent=cond+' • Wind '+w+' mph';
+}catch(e){}
+}
+loadWeather(); setInterval(loadWeather,600000);
+
+// REAL NWS ALERTS VIA VERCEL PROXY - /api/alerts.js
+async function loadNWSAlerts(){
+  const bar=document.getElementById('tickerBar');
+  const text=document.getElementById('tickerText');
+  try{
+    let r=await fetch('/api/alerts');
+    let j=await r.json();
+    let alerts=j.alerts||[];
+    if(alerts.length===0){
+      bar.className='alert clear';
+      let t=document.getElementById('temp').textContent;
+      let c=document.getElementById('cond').textContent;
+      text.textContent='✅ NO ACTIVE WEATHER ALERTS FOR ORANGE COUNTY • '+t+' '+c+' • NEW WINDSOR, NY';
+    } else {
+      bar.className='alert';
+      let a=alerts[0];
+      text.textContent='⚠️ WEATHER ALERT: '+a.event.toUpperCase()+' - Orange County - '+a.headline;
+    }
+  }catch(e){
+    bar.className='alert clear';
+    text.textContent='⚠️ WEATHER ALERT CHECK UNAVAILABLE - CHECK WEATHER.GOV • NEW WINDSOR, NY';
+  }
+}
+loadNWSAlerts(); setInterval(loadNWSAlerts,300000);
+</script>
+</body>
+</html>
