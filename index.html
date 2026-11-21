@@ -7,61 +7,60 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
 html,body{width:100%;height:100%;overflow:hidden}
-body{background:#02122b;color:#fff;display:flex;flex-direction:column;height:100vh;height:100dvh;overflow:hidden}
-/* HEADER - LOCKED, NO SIDEWAYS SCROLL */
-.top{display:flex;align-items:center;gap:14px;padding:6px 14px;background:linear-gradient(180deg,#041a3d,#071f4a);flex-shrink:0;min-height:112px;width:100%;overflow:hidden}
-.top img{width:98px;height:98px;object-fit:contain;flex-shrink:0;filter:drop-shadow(0 0 8px rgba(250,204,21,.4))}
+body{background:#93c5fd;color:#0f172a;display:flex;flex-direction:column;height:100vh;height:100dvh;overflow:hidden}
+/* HEADER - LIGHTER BLUE, LOCKED */
+.top{display:flex;align-items:center;gap:14px;padding:6px 14px;background:linear-gradient(180deg,#bfdbfe,#93c5fd);flex-shrink:0;min-height:112px;width:100%;overflow:hidden}
+.top img{width:98px;height:98px;object-fit:contain;flex-shrink:0}
 .top .title{flex:1;min-width:0}
-.top h1{font-size:clamp(18px,2.6vw,38px);color:#4ec8f5;line-height:1.05;font-weight:900;white-space:normal}
-.top h2{font-size:clamp(11px,1.4vw,20px);color:#fff;line-height:1.2;font-weight:900;letter-spacing:1px;white-space:normal}
+.top h1{font-size:clamp(18px,2.6vw,38px);color:#1e3a8a;line-height:1.05;font-weight:900;white-space:normal}
+.top h2{font-size:clamp(11px,1.4vw,20px);color:#1e40af;line-height:1.2;font-weight:900;letter-spacing:1px;white-space:normal}
 .datetime{flex-shrink:0;text-align:right;white-space:nowrap}
-.datetime .time{font-size:clamp(26px,3.2vw,52px);font-weight:900;line-height:.9}
-.datetime .date{font-size:clamp(10px,1vw,16px);color:#4ec8f5;font-weight:700;margin-top:3px}
-/* WEATHER TICKER - SCROLLS ACROSS TOP */
+.datetime .time{font-size:clamp(26px,3.2vw,52px);font-weight:900;line-height:.9;color:#0f172a}
+.datetime .date{font-size:clamp(10px,1vw,16px);color:#1e40af;font-weight:700;margin-top:3px}
+/* WEATHER TICKER */
 .alertbar{background:#ea580c;color:#000;font-weight:900;font-size:clamp(14px,1.4vw,21px);padding:9px 0;flex-shrink:0;overflow:hidden;white-space:nowrap;width:100%}
 .ticker{display:inline-block;white-space:nowrap;animation:scroll 22s linear infinite;will-change:transform}
 .ticker span{padding:0 40px}
 @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.alertbar.red{background:#dc2626;color:#fde047}
-/* MAIN */
+/* MAIN - LIGHTER BLUE BOXES */
 .main{flex:1;display:grid;grid-template-columns:1.15fr 1.4fr 1fr;gap:12px;padding:12px;min-height:0;overflow:hidden;width:100%}
-.card{background:linear-gradient(180deg,#0a2f68,#061a3d);border:1px solid #2a6fd8;border-radius:12px;overflow:hidden;display:flex;flex-direction:column;min-height:0}
-.card-head{background:linear-gradient(90deg,#0ea5e9,#0369a1);color:#fff;font-weight:900;font-size:clamp(14px,1.4vw,21px);padding:10px 14px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card{background:#dbeafe;border:2px solid #60a5fa;border-radius:12px;overflow:hidden;display:flex;flex-direction:column;min-height:0}
+.card-head{background:linear-gradient(90deg,#60a5fa,#3b82f6);color:#fff;font-weight:900;font-size:clamp(14px,1.4vw,21px);padding:10px 14px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .inner{padding:12px;display:flex;flex-direction:column;gap:10px;flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;scrollbar-width:none}
 .inner::-webkit-scrollbar{display:none}
-.truck{border:1px solid rgba(255,255,255,.28);border-radius:10px;padding:11px;background:rgba(0,0,0,.22);flex-shrink:0}
+.truck{border:1px solid #93c5fd;border-radius:10px;padding:11px;background:#eff6ff;flex-shrink:0}
 .truck-top{display:flex;justify-content:space-between;align-items:center}
-.truck h3{font-size:clamp(16px,1.6vw,24px);font-weight:900}
-.truck .in{color:#22c55e;font-weight:900;font-size:clamp(11px,1vw,14px)}
-.truck p{font-size:clamp(12px,1vw,14px);line-height:1.5;color:#e2e8f0;margin-top:4px}
-.oos{background:#991b1b;color:#fff;text-align:center;font-weight:900;font-size:clamp(12px,1.1vw,16px);padding:9px;flex-shrink:0}
+.truck h3{font-size:clamp(16px,1.6vw,24px);font-weight:900;color:#1e3a8a}
+.truck .in{color:#16a34a;font-weight:900;font-size:clamp(11px,1vw,14px)}
+.truck p{font-size:clamp(12px,1vw,14px);line-height:1.5;color:#334155;margin-top:4px}
+.oos{background:#dc2626;color:#fff;text-align:center;font-weight:900;font-size:clamp(12px,1.1vw,16px);padding:9px;flex-shrink:0}
 .bulletin{background:#f97316;color:#000;border-radius:10px;padding:12px;flex-shrink:0}
 .bulletin h3{font-size:clamp(15px,1.4vw,21px);font-weight:900}
 .bulletin p{font-size:clamp(12px,1vw,15px);font-weight:700;line-height:1.5;margin-top:5px}
-.event{border:1px solid rgba(255,255,255,.25);border-radius:10px;padding:10px 12px;background:rgba(0,0,0,.2);display:flex;gap:11px;align-items:flex-start;flex-shrink:0}
-.datebox{background:#0ea5e9;color:#fff;border-radius:8px;text-align:center;min-width:56px;padding:6px 2px;flex-shrink:0}
+.event{border:1px solid #93c5fd;border-radius:10px;padding:10px 12px;background:#eff6ff;display:flex;gap:11px;align-items:flex-start;flex-shrink:0}
+.datebox{background:#3b82f6;color:#fff;border-radius:8px;text-align:center;min-width:56px;padding:6px 2px;flex-shrink:0}
 .datebox b{font-size:clamp(18px,1.6vw,24px);line-height:1;display:block}
 .datebox span{font-size:10px;font-weight:900}
-.event h4{font-size:clamp(13px,1.1vw,17px)}
-.event p{font-size:clamp(11px,0.95vw,13px);color:#cbd5e1;line-height:1.4;margin-top:2px}
+.event h4{font-size:clamp(13px,1.1vw,17px);color:#1e3a8a}
+.event p{font-size:clamp(11px,0.95vw,13px);color:#475569;line-height:1.4;margin-top:2px}
 .tag{display:inline-block;background:#22c55e;color:#000;font-size:11px;font-weight:900;padding:2px 8px;border-radius:20px;margin-top:5px}
-.tag.orange{background:#f97316}.tag.blue{background:#4ec8f5}.tag.yellow{background:#fde047}
-.cal{display:flex;gap:11px;align-items:center;border-bottom:1px solid rgba(255,255,255,.18);padding:8px 2px;flex-shrink:0}
+.tag.orange{background:#f97316}.tag.blue{background:#60a5fa;color:#fff}.tag.yellow{background:#fde047}
+.cal{display:flex;gap:11px;align-items:center;border-bottom:1px solid #bfdbfe;padding:8px 2px;flex-shrink:0}
 .cal:last-child{border-bottom:none}
-.caldate{background:#fff;color:#000;border-radius:8px;min-width:54px;text-align:center;padding:5px 2px;flex-shrink:0}
+.caldate{background:#fff;color:#1e3a8a;border:1px solid #93c5fd;border-radius:8px;min-width:54px;text-align:center;padding:5px 2px;flex-shrink:0}
 .caldate b{font-size:clamp(16px,1.4vw,22px);display:block;line-height:1}
-.caldate span{font-size:10px;font-weight:900;color:#0369a1}
-.cal h4{font-size:clamp(12px,1vw,16px)}
-.cal p{font-size:clamp(11px,0.9vw,13px);color:#cbd5e1;margin-top:1px}
-.footer{background:#0a2f68;color:#fde047;text-align:center;font-weight:900;font-size:clamp(15px,1.7vw,27px);padding:9px;border-top:3px solid #0ea5e9;flex-shrink:0;white-space:nowrap;overflow:hidden}
-.green{color:#22c55e}
+.caldate span{font-size:10px;font-weight:900;color:#2563eb}
+.cal h4{font-size:clamp(12px,1vw,16px);color:#1e3a8a}
+.cal p{font-size:clamp(11px,0.9vw,13px);color:#475569;margin-top:1px}
+.footer{background:#bfdbfe;color:#1e3a8a;text-align:center;font-weight:900;font-size:clamp(15px,1.7vw,27px);padding:9px;border-top:3px solid #60a5fa;flex-shrink:0;white-space:nowrap;overflow:hidden}
+.green{color:#16a34a}
 @media(max-width:1000px){.main{grid-template-columns:1fr 1fr}.main .card:last-child{grid-column:1/-1}}
 </style>
 </head>
 <body>
 
 <div class="top">
-<img id="logo" src="logo.png" alt="33" onerror="tryNextLogo(this)">
+<img id="logo" src="logo.png" alt="33">
 <div class="title">
 <h1>NEW WINDSOR FIRE DEPARTMENT</h1>
 <h2>QUASSAICK BRIDGE FIRE DISTRICT • EST. 1935</h2>
@@ -72,13 +71,13 @@ body{background:#02122b;color:#fff;display:flex;flex-direction:column;height:100
 </div>
 </div>
 
-<div class="alertbar"><div class="ticker" id="ticker"><span>✅ NO ACTIVE WEATHER ALERTS • <span id="wText">Loading Weather...</span> • NEW WINDSOR, NY • STAY SAFE • CHECK ON NEIGHBORS • &nbsp;&nbsp;&nbsp;</span><span>✅ NO ACTIVE WEATHER ALERTS • <span id="wText2">Loading Weather...</span> • NEW WINDSOR, NY • STAY SAFE • CHECK ON NEIGHBORS • &nbsp;&nbsp;&nbsp;</span></div></div>
+<div class="alertbar"><div class="ticker"><span>✅ NO ACTIVE WEATHER ALERTS • <span id="wText">Loading Weather...</span> • NEW WINDSOR, NY • STAY SAFE • CHECK ON NEIGHBORS • &nbsp;&nbsp;&nbsp;</span><span>✅ NO ACTIVE WEATHER ALERTS • <span id="wText2">Loading Weather...</span> • NEW WINDSOR, NY • STAY SAFE • CHECK ON NEIGHBORS • &nbsp;&nbsp;&nbsp;</span></div></div>
 
 <div class="main">
 <div class="card">
 <div class="card-head">🚒 TRUCK DUTY SCHEDULE</div>
 <div class="inner">
-<p style="text-align:center;color:#a5b4fc;font-size:clamp(11px,0.9vw,14px);font-weight:700">DRIVER / OFFICER / 3 FIREFIGHTERS PER TRUCK</p>
+<p style="text-align:center;color:#1e40af;font-size:clamp(11px,0.9vw,14px);font-weight:700">DRIVER / OFFICER / 3 FIREFIGHTERS PER TRUCK</p>
 <div class="truck"><div class="truck-top"><h3>ENGINE 444</h3><div class="in">● IN SERVICE</div></div><p><b>Driver:</b> Capt. R. Morano | <b>Officer:</b> Lt. J. Patel<br><b>FF:</b> K. Lee • M. Chen • A. Ruiz</p></div>
 <div class="truck"><div class="truck-top"><h3>ENGINE 446</h3><div class="in">● IN SERVICE</div></div><p><b>Driver:</b> Capt. D. Hayes | <b>Officer:</b> Lt. S. Kim<br><b>FF:</b> T. Brooks • L. Alvarez • R. Stone</p></div>
 <div class="truck"><div class="truck-top"><h3>SQUAD 445</h3><div class="in">● IN SERVICE</div></div><p><b>Driver:</b> Capt. M. O'Neil | <b>Officer:</b> Lt. P. Garcia<br><b>FF:</b> J. Wu • E. Doyle • S. Turner</p></div>
@@ -113,8 +112,8 @@ body{background:#02122b;color:#fff;display:flex;flex-direction:column;height:100
 <div class="cal"><div class="caldate"><b>13</b><span>DEC</span></div><div><h4>Holiday Parade</h4><p>4 PM - Downtown</p></div></div>
 <div class="cal"><div class="caldate"><b>19</b><span>DEC</span></div><div><h4>Christmas Party</h4><p>6 PM - Station 1 Hall</p></div></div>
 <div class="cal"><div class="caldate"><b>24</b><span>DEC</span></div><div><h4>Christmas Eve Coverage</h4><p>Holiday Crew</p></div></div>
-<div style="background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.2);border-radius:10px;padding:10px;text-align:center;margin-top:auto">
-<p style="font-weight:900;color:#fde047">MEMBER: RESPONDING 12 / 18</p>
+<div style="background:#eff6ff;border:1px solid #93c5fd;border-radius:10px;padding:10px;text-align:center;margin-top:auto">
+<p style="font-weight:900;color:#1e3a8a">MEMBER: RESPONDING 12 / 18</p>
 <p style="margin-top:4px"><span class="green">●</span> NO ACTIVE INCIDENTS</p>
 </div>
 </div>
@@ -124,14 +123,6 @@ body{background:#02122b;color:#fff;display:flex;flex-direction:column;height:100
 <div class="footer">NEW WINDSOR'S BRAVEST • 90 YEARS OF SERVICE</div>
 
 <script>
-// LOGO FALLBACK - tries logo.png, then LOGO.PNG, then logo.jpg, then logo.jpeg
-let logoTries = ['logo.png','logo.PNG','logo.jpg','logo.jpeg','Logo.png'];
-let logoIdx = 0;
-function tryNextLogo(img){
-logoIdx++;
-if(logoIdx < logoTries.length){ img.src = logoTries[logoIdx]; }
-else { img.style.display='none'; }
-}
 function tick(){
 let d=new Date();
 document.getElementById('clock').textContent=d.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'});
@@ -149,11 +140,10 @@ document.getElementById('wText2').textContent=txt;
 }catch(e){document.getElementById('wText').textContent='Weather Unavailable';document.getElementById('wText2').textContent='Weather Unavailable';}
 }
 loadWeather(); setInterval(loadWeather,600000);
-// EACH BLUE BOX SCROLLS ON ITS OWN - HEADER STAYS LOCKED
 document.querySelectorAll('.inner').forEach((box, i)=>{
 let paused = false;
 let waiting = 0;
-let speeds = [0.6, 0.7, 0.5]; // each box slightly different speed
+let speeds = [0.6, 0.7, 0.5];
 box.addEventListener('mouseenter', ()=> paused = true);
 box.addEventListener('mouseleave', ()=> paused = false);
 setInterval(()=>{
