@@ -29,18 +29,22 @@ body{background:#93c5fd;color:#0f172a;display:flex;flex-direction:column;height:
 .slide-head{padding:12px 18px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
 .slide-head h2{font-size:clamp(20px,2.4vw,36px);color:#1e3a8a;font-weight:900}
 .slide-head span{font-size:13px;color:#2563eb;font-weight:900}
-.slide-body{flex:1;padding:0 18px 14px;display:flex;flex-direction:column;gap:12px;min-height:0;overflow:hidden}
-.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;flex:1}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;flex:1}
-.truck{border:1px solid #93c5fd;border-radius:14px;padding:18px;background:#eff6ff;display:flex;flex-direction:column;justify-content:center}
+/* SCROLLABLE SLIDE BODY - THIS IS THE FIX */
+.slide-body{flex:1;padding:0 18px 14px;display:flex;flex-direction:column;gap:12px;min-height:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:#2563eb #bfdbfe}
+.slide-body::-webkit-scrollbar{width:10px}
+.slide-body::-webkit-scrollbar-track{background:#bfdbfe;border-radius:10px}
+.slide-body::-webkit-scrollbar-thumb{background:#2563eb;border-radius:10px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.truck{border:1px solid #93c5fd;border-radius:14px;padding:18px;background:#eff6ff;display:flex;flex-direction:column;justify-content:center;min-height:150px}
 .truck h3{font-size:clamp(22px,2.4vw,34px);font-weight:900;color:#1e3a8a}
 .truck .in{color:#16a34a;font-weight:900;font-size:14px;margin-top:4px}
 .truck p{font-size:clamp(14px,1.3vw,19px);line-height:1.6;color:#334155;margin-top:10px}
 .truck p b{color:#0f172a}
-.big-bulletin{background:#f97316;color:#000;border-radius:16px;padding:22px;text-align:center;flex:1;display:flex;flex-direction:column;justify-content:center;gap:12px}
+.big-bulletin{background:#f97316;color:#000;border-radius:16px;padding:22px;text-align:center;display:flex;flex-direction:column;justify-content:center;gap:12px;min-height:180px}
 .big-bulletin h3{font-size:clamp(24px,3vw,44px);font-weight:900}
 .big-bulletin p{font-size:clamp(16px,1.8vw,24px);font-weight:700;line-height:1.6}
-.event-big{border:1px solid #93c5fd;border-radius:14px;padding:16px;background:#eff6ff;display:flex;gap:16px;align-items:center}
+.event-big{border:1px solid #93c5fd;border-radius:14px;padding:16px;background:#eff6ff;display:flex;gap:16px;align-items:center;min-height:90px}
 .datebox{background:#3b82f6;color:#fff;border-radius:12px;text-align:center;min-width:92px;padding:12px 4px;flex-shrink:0}
 .datebox b{font-size:clamp(28px,2.8vw,40px);line-height:1;display:block}
 .datebox span{font-size:12px;font-weight:900}
@@ -48,30 +52,41 @@ body{background:#93c5fd;color:#0f172a;display:flex;flex-direction:column;height:
 .event-big p{font-size:clamp(14px,1.3vw,18px);color:#475569;line-height:1.5;margin-top:4px}
 .tag{display:inline-block;background:#22c55e;color:#000;font-size:12px;font-weight:900;padding:3px 10px;border-radius:20px;margin-top:6px}
 .tag.orange{background:#f97316}.tag.blue{background:#60a5fa;color:#fff}.tag.yellow{background:#fde047}.tag.red{background:#dc2626;color:#fff}
-.announce-big{border:1px solid #93c5fd;border-radius:14px;padding:18px;background:#eff6ff;flex:1;display:flex;flex-direction:column;justify-content:center}
+.announce-big{border:1px solid #93c5fd;border-radius:14px;padding:18px;background:#eff6ff;display:flex;flex-direction:column;justify-content:center;min-height:140px}
 .announce-big h3{font-size:clamp(20px,2vw,30px);color:#1e3a8a}
 .announce-big p{font-size:clamp(14px,1.4vw,19px);color:#334155;line-height:1.6;margin-top:8px}
-.pdf-wrap{flex:1;background:#fff;border:1px solid #93c5fd;border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
-.pdf-wrap iframe{flex:1;width:100%;border:0}
+.pdf-wrap{flex:1;background:#fff;border:1px solid #93c5fd;border-radius:12px;overflow:hidden;display:flex;flex-direction:column;min-height:400px}
+.pdf-wrap iframe{flex:1;width:100%;border:0;min-height:400px}
 .progress{height:8px;background:#bfdbfe;overflow:hidden;margin:0 12px 8px;flex-shrink:0}
 .progress-fill{height:100%;background:#2563eb;width:0%}
 .footer{background:#bfdbfe;color:#1e3a8a;text-align:center;font-weight:900;font-size:clamp(15px,1.7vw,27px);padding:9px;border-top:3px solid #60a5fa;flex-shrink:0}
+.scroll-hint{text-align:right;font-size:11px;color:#2563eb;font-weight:700;padding:2px 18px 0}
+@media(max-width:900px){
+.grid3{grid-template-columns:1fr 1fr}
+.top{min-height:90px}
+.top img{width:70px;height:70px}
+}
+@media(max-width:600px){
+.grid3,.grid2{grid-template-columns:1fr}
+.top h1{font-size:20px}
+.event-big{flex-direction:column;align-items:flex-start}
+}
 </style>
 </head>
 <body>
 
 <div class="top">
 <img src="logo.png" alt="33">
-<div class="title"><h1>NEW WINDSOR FIRE DEPARTMENT</h1><h2>QUASSAICK BRIDGE FIRE DISTRICT • EST. 1935</h2></div>
+<div class="title"><h1>NEW WINDSOR FIRE DEPARTMENT</h1><h2>QUASSAICK BRIDGE FIRE DISTRICT</h2></div>
 <div class="datetime"><div class="time" id="clock">11:42 AM</div><div class="date" id="date">Saturday, November 21, 2026</div></div>
 </div>
 
-<div class="alertbar"><div class="ticker"><span>✅ NO ACTIVE WEATHER ALERTS • <span id="wText">Loading Weather...</span> • NEW WINDSOR, NY • STAY SAFE • CHECK ON NEIGHBORS • &nbsp;&nbsp;&nbsp;</span><span>✅ NO ACTIVE WEATHER ALERTS • <span id="wText2">Loading Weather...</span> • NEW WINDSOR, NY • STAY SAFE • CHECK ON NEIGHBORS • &nbsp;&nbsp;&nbsp;</span></div></div>
+<div class="alertbar"><div class="ticker"><span>✅ NO ACTIVE WEATHER ALERTS • <span id="wText">Loading Weather...</span> <span id="wText2">Loading Weather...</span> • N&nbsp;&nbsp;&nbsp;</span></div></div>
 
 <div class="stage" id="stage">
 
 <div class="slide active" data-duration="15000">
-<div class="slide-head"><h2>🚒 TRUCK DUTY SCHEDULE</h2><span>1 / 5</span></div>
+<div class="slide-head"><h2>🚒 TRUCK DUTY SCHEDULE</h2><span>1 / 5 • ↕ SCROLL IF NEEDED</span></div>
 <div class="slide-body"><div class="grid3">
 <div class="truck"><h3>ENGINE 444</h3><div class="in">● IN SERVICE</div><p><b>Driver:</b> Capt. R. Morano<br><b>Officer:</b> Lt. J. Patel<br><b>FF:</b> K. Lee • M. Chen • A. Ruiz</p></div>
 <div class="truck"><h3>ENGINE 446</h3><div class="in">● IN SERVICE</div><p><b>Driver:</b> Capt. D. Hayes<br><b>Officer:</b> Lt. S. Kim<br><b>FF:</b> T. Brooks • L. Alvarez • R. Stone</p></div>
@@ -83,7 +98,7 @@ body{background:#93c5fd;color:#0f172a;display:flex;flex-direction:column;height:
 </div>
 
 <div class="slide" data-duration="15000">
-<div class="slide-head"><h2>🔥 TRAINING BULLETIN</h2><span>2 / 5</span></div>
+<div class="slide-head"><h2>🔥 TRAINING BULLETIN</h2><span>2 / 5 • ↕ SCROLL IF NEEDED</span></div>
 <div class="slide-body">
 <div class="big-bulletin"><h3>MONDAY 7:00 PM — HOSE ADVANCEMENT & SEARCH</h3><p>Bring Full PPE • SCBA Check Required • Station 1 Bay<br>All Members • Class A Uniform</p></div>
 <div class="grid2">
@@ -94,7 +109,7 @@ body{background:#93c5fd;color:#0f172a;display:flex;flex-direction:column;height:
 </div>
 
 <div class="slide" data-duration="15000">
-<div class="slide-head"><h2>📅 CALENDAR • EVENTS</h2><span>3 / 5</span></div>
+<div class="slide-head"><h2>📅 CALENDAR • EVENTS</h2><span>3 / 5 • ↕ SCROLL IF NEEDED</span></div>
 <div class="slide-body">
 <div class="event-big"><div class="datebox"><b>24</b><span>NOV • MON</span></div><div><h4>Company Drill - Ladder Operations</h4><p>7:00 PM - Station 1 • All Members</p><span class="tag">TRAINING</span></div></div>
 <div class="event-big"><div class="datebox"><b>26</b><span>NOV • WED</span></div><div><h4>Thanksgiving Standby Crew</h4><p>8 AM - 8 PM • Volunteers Needed • Sign Up At Station</p><span class="tag orange">EVENT</span></div></div>
@@ -105,7 +120,7 @@ body{background:#93c5fd;color:#0f172a;display:flex;flex-direction:column;height:
 </div>
 
 <div class="slide" data-duration="15000">
-<div class="slide-head"><h2>📢 ANNOUNCEMENTS</h2><span>4 / 5</span></div>
+<div class="slide-head"><h2>📢 ANNOUNCEMENTS</h2><span>4 / 5 • ↕ SCROLL IF NEEDED</span></div>
 <div class="slide-body"><div class="grid2">
 <div class="announce-big"><h3>📢 Thanksgiving Standby</h3><p>Volunteers needed for Thanksgiving standby crew. 8 AM - 8 PM. Sign up at Station 1.</p><span class="tag orange">EVENT</span></div>
 <div class="announce-big"><h3>🧸 Toy Drive</h3><p>Toy Drive Kickoff Dec 5 at 10 AM - Station 1. Bring new unwrapped toys.</p><span class="tag orange">EVENT</span></div>
@@ -115,7 +130,7 @@ body{background:#93c5fd;color:#0f172a;display:flex;flex-direction:column;height:
 </div>
 
 <div class="slide" data-duration="25000">
-<div class="slide-head"><h2>📄 PARTICIPATION REPORT</h2><span>5 / 5</span></div>
+<div class="slide-head"><h2>📄 PARTICIPATION REPORT</h2><span>5 / 5 • ↕ SCROLL IF NEEDED</span></div>
 <div class="slide-body">
 <div class="pdf-wrap"><iframe src="https://drive.google.com/file/d/1iVvadM5TM_UYecTzHdoed4pOX5bzeJO0/preview"></iframe></div>
 <p style="text-align:center;font-size:12px;color:#475569;font-weight:700">Google Drive • If blank, set file to Anyone with the link can view</p>
@@ -135,6 +150,7 @@ let timer = null;
 function getDuration(){ return parseInt(slides[current].dataset.duration || 15000); }
 function show(i){
 slides.forEach(s=>s.classList.remove('active'));
+document.querySelectorAll('.slide-body').forEach(b=>b.scrollTop=0);
 current = (i + slides.length) % slides.length;
 slides[current].classList.add('active');
 startTime = Date.now();
@@ -154,6 +170,11 @@ startLoop();
 document.addEventListener('keydown', (e)=>{
 if(e.key === 'ArrowRight') show(current+1);
 if(e.key === 'ArrowLeft') show(current-1);
+if(e.key === 'ArrowDown' || e.key === 'ArrowUp'){
+let body = slides[current].querySelector('.slide-body');
+if(body) body.scrollBy({top: e.key==='ArrowDown'?120:-120, behavior:'smooth'});
+e.preventDefault();
+}
 });
 function tick(){
 let d=new Date();
