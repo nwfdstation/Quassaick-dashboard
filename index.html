@@ -1,1 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>New Windsor Fire Department - Bulletin Board</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
+html,body{width:100%;height:100%;overflow:hidden}
+body{background:#02122b;color:#fff;display:flex;flex-direction:column;height:100vh;height:100dvh}
+.top{display:flex;align-items:center;gap:16px;padding:6px 18px;background:linear-gradient(180deg,#041a3d,#071f4a);flex-shrink:0;min-height:118px}
+.top img{width:105px;height:105px;object-fit:contain;flex-shrink:0;filter:drop-shadow(0 0 8px rgba(250,204,21,.4))}
+.top h1{font-size:clamp(22px,3vw,40px);color:#4ec8f5;line-height:1;font-weight:900;white-space:nowrap}
+.top h2{font-size:clamp(14px,1.8vw,24px);color:#fff;line-height:1.2;font-weight:900;letter-spacing:2px}
+.datetime{margin-left:auto;text-align:right;flex-shrink:0}
+.datetime .time{font-size:clamp(32px,3.8vw,60px);font-weight:900;line-height:.9}
+.datetime .date{font-size:clamp(12px,1.1vw,18px);color:#4ec8f5;font-weight:700;margin-top:3px;white-space:nowrap}
+.alertbar{display:flex;align-items:center;justify-content:center;gap:12px;background:#ea580c;color:#000;font-weight:900;font-size:clamp(13px,1.35vw,21px);padding:9px 12px;flex-shrink:0;text-align:center;white-space:nowrap;overflow:hidden}
+.alertbar.red{background:#dc2626;color:#fde047}
+.main{flex:1;display:grid;grid-template-columns:1.15fr 1.4fr 1fr;gap:12px;padding:12px;min-height:0}
+.card{background:linear-gradient(180deg,#0a2f68,#061a3d);border:1px solid #2a6fd8;border-radius:12px;overflow:hidden;display:flex;flex-direction:column;min-height:0}
+.card-head{background:linear-gradient(90deg,#0ea5e9,#0369a1);color:#fff;font-weight:900;font-size:clamp(14px,1.4vw,21px);padding:10px 14px}
+.inner{padding:12px;display:flex;flex-direction:column;gap:10px;flex:1;min-height:0;overflow:hidden}
+.truck{border:1px solid rgba(255,255,255,.28);border-radius:10px;padding:11px;background:rgba(0,0,0,.22)}
+.truck-top{display:flex;justify-content:space-between;align-items:center}
+.truck h3{font-size:clamp(17px,1.7vw,26px);font-weight:900}
+.truck .in{color:#22c55e;font-weight:900;font-size:clamp(11px,1vw,15px)}
+.truck p{font-size:clamp(12px,1vw,15px);line-height:1.5;color:#e2e8f0;margin-top:4px}
+.oos{background:#991b1b;color:#fff;text-align:center;font-weight:900;font-size:clamp(12px,1.1vw,17px);padding:9px}
+.bulletin{background:#f97316;color:#000;border-radius:10px;padding:12px}
+.bulletin h3{font-size:clamp(15px,1.5vw,23px);font-weight:900}
+.bulletin p{font-size:clamp(12px,1.05vw,16px);font-weight:700;line-height:1.5;margin-top:5px}
+.event{border:1px solid rgba(255,255,255,.25);border-radius:10px;padding:10px 12px;background:rgba(0,0,0,.2);display:flex;gap:11px;align-items:flex-start}
+.datebox{background:#0ea5e9;color:#fff;border-radius:8px;text-align:center;min-width:58px;padding:6px 2px;flex-shrink:0}
+.datebox b{font-size:clamp(18px,1.7vw,26px);line-height:1;display:block}
+.datebox span{font-size:10px;font-weight:900;letter-spacing:1px}
+.event h4{font-size:clamp(13px,1.15vw,18px)}
+.event p{font-size:clamp(11px,0.95vw,14px);color:#cbd5e1;line-height:1.4;margin-top:2px}
+.tag{display:inline-block;background:#22c55e;color:#000;font-size:11px;font-weight:900;padding:2px 8px;border-radius:20px;margin-top:5px}
+.tag.orange{background:#f97316}.tag.blue{background:#4ec8f5}.tag.yellow{background:#fde047}
+.cal{display:flex;gap:11px;align-items:center;border-bottom:1px solid rgba(255,255,255,.18);padding:8px 2px}
+.cal:last-child{border-bottom:none}
+.caldate{background:#fff;color:#000;border-radius:8px;min-width:56px;text-align:center;padding:5px 2px;flex-shrink:0}
+.caldate b{font-size:clamp(16px,1.5vw,24px);display:block;line-height:1}
+.caldate span{font-size:10px;font-weight:900;color:#0369a1}
+.cal h4{font-size:clamp(12px,1.05vw,17px)}
+.cal p{font-size:clamp(11px,0.9vw,13px);color:#cbd5e1;margin-top:1px}
+.footer{background:#0a2f68;color:#fde047;text-align:center;font-weight:900;font-size:clamp(16px,1.8vw,29px);padding:9px;border-top:3px solid #0ea5e9;flex-shrink:0}
+.green{color:#22c55e}
+@media(max-width:1000px){.main{grid-template-columns:1fr 1fr;overflow-y:auto}.main .card:last-child{grid-column:1/-1}}
+</style>
+</head>
+<body>
 
+<div class="top">
+<img src="logo.png" alt="New Windsor 33">
+<div>
+<h1>NEW WINDSOR FIRE DEPARTMENT</h1>
+<h2>QUASSAICK BRIDGE FIRE DISTRICT • EST. 1935</h2>
+</div>
+<div class="datetime">
+<div class="time" id="clock">11:16 AM</div>
+<div class="date" id="date">Saturday, November 21, 2026</div>
+</div>
+</div>
+
+<div class="alertbar" id="alertbar"><span id="alertText">✅ NO ACTIVE WEATHER ALERTS • <span id="wText">Loading Weather...</span> • NEW WINDSOR, NY</span></div>
+
+<div class="main">
+<div class="card">
+<div class="card-head">🚒 TRUCK DUTY SCHEDULE</div>
+<div class="inner">
+<p style="text-align:center;color:#a5b4fc;font-size:clamp(11px,0.9vw,14px);font-weight:700">DRIVER / OFFICER / 3 FIREFIGHTERS PER TRUCK</p>
+<div class="truck"><div class="truck-top"><h3>ENGINE 444</h3><div class="in">● IN SERVICE</div></div><p><b>Driver:</b> Capt. R. Morano | <b>Officer:</b> Lt. J. Patel<br><b>FF:</b> K. Lee • M. Chen • A. Ruiz</p></div>
+<div class="truck"><div class="truck-top"><h3>ENGINE 446</h3><div class="in">● IN SERVICE</div></div><p><b>Driver:</b> Capt. D. Hayes | <b>Officer:</b> Lt. S. Kim<br><b>FF:</b> T. Brooks • L. Alvarez • R. Stone</p></div>
+<div class="truck"><div class="truck-top"><h3>SQUAD 445</h3><div class="in">● IN SERVICE</div></div><p><b>Driver:</b> Capt. M. O'Neil | <b>Officer:</b> Lt. P. Garcia<br><b>FF:</b> J. Wu • E. Doyle • S. Turner</p></div>
+<div class="truck"><div class="truck-top"><h3>UTILITY 448</h3><div class="in">● IN SERVICE</div></div><p><b>Driver:</b> F. Clark | <b>Officer:</b> Lt. N. Rossi<br><b>FF:</b> K. Singh • D. Miller • B. Ortiz</p></div>
+</div>
+<div class="oos">● UTILITY 1 ● OUT OF SERVICE</div>
+</div>
+
+<div class="card">
+<div class="card-head">📋 TRAINING BULLETIN & EVENTS</div>
+<div class="inner">
+<div class="bulletin"><h3>🔥 TRAINING BULLETIN - THIS WEEK</h3><p>MONDAY 7:00 PM — Drill: Hose Advancement & Search<br>Bring Full PPE • SCBA Check Required • Station 1 Bay</p></div>
+<div class="event"><div class="datebox"><b>24</b><span>NOV</span></div><div><h4>Company Drill - Ladder Operations</h4><p>7:00 PM - Station 1 • All Members • Class A Uniform</p><span class="tag">TRAINING</span></div></div>
+<div class="event"><div class="datebox"><b>26</b><span>NOV</span></div><div><h4>Thanksgiving Standby Crew</h4><p>8 AM - 8 PM • Volunteers Needed • Sign Up At Station</p><span class="tag orange">EVENT</span></div></div>
+<div class="event"><div class="datebox"><b>28</b><span>NOV</span></div><div><h4>Apparatus Check & Equipment Inventory</h4><p>9:00 AM - All Trucks • Officers + Drivers</p><span class="tag blue">MAINTENANCE</span></div></div>
+<div class="event"><div class="datebox"><b>30</b><span>NOV</span></div><div><h4>CPR / First Aid Refresher</h4><p>6:30 PM - Meeting Room • Bring Certification Card</p><span class="tag yellow">REQUIRED</span></div></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-head">📅 CALENDAR OF EVENTS</div>
+<div class="inner">
+<div class="cal"><div class="caldate"><b>22</b><span>SUN</span></div><div><h4>Sunday Duty Crew</h4><p>8 AM - Station Coverage</p></div></div>
+<div class="cal"><div class="caldate"><b>24</b><span>MON</span></div><div><h4>Weekly Drill</h4><p>7 PM - Ladder Ops</p></div></div>
+<div class="cal"><div class="caldate"><b>26</b><span>WED</span></div><div><h4>Thanksgiving Standby</h4><p>8 AM - 8 PM</p></div></div>
+<div class="cal"><div class="caldate"><b>27</b><span>THU</span></div><div><h4>Thanksgiving Day</h4><p>Holiday Coverage</p></div></div>
+<div class="cal"><div class="caldate"><b>30</b><span>SUN</span></div><div><h4>CPR Refresher</h4><p>6:30 PM - Meeting Room</p></div></div>
+<div class="cal"><div class="caldate"><b>02</b><span>DEC</span></div><div><h4>District Meeting</h4><p>7 PM - Commissioners</p></div></div>
+<div class="cal"><div class="caldate"><b>05</b><span>DEC</span></div><div><h4>Toy Drive Kickoff</h4><p>10 AM - Station 1</p></div></div>
+<div class="cal"><div class="caldate"><b>13</b><span>DEC</span></div><div><h4>Holiday Parade</h4><p>4 PM - Downtown</p></div></div>
+<div style="background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.2);border-radius:10px;padding:10px;text-align:center;margin-top:auto">
+<p style="font-weight:900;color:#fde047">MEMBER: RESPONDING 12 / 18</p>
+<p style="margin-top:4px"><span class="green">●</span> NO ACTIVE INCIDENTS</p>
+</div>
+</div>
+</div>
+</div>
+
+<div class="footer">NEW WINDSOR'S BRAVEST • 90 YEARS OF SERVICE</div>
+
+<script>
+function tick(){
+let d=new Date();
+document.getElementById('clock').textContent=d.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'});
+document.getElementById('date').textContent=d.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
+}
+tick(); setInterval(tick,10000);
+async function loadWeather(){
+try{
+let r=await fetch('https://api.open-meteo.com/v1/forecast?latitude=41.47&longitude=-74.02&current=temperature_2m,weather_code,wind_speed_10m&temperature_unit=fahrenheit&wind_speed_unit=mph&timezone=America%2FNew_York');
+let j=await r.json(); let t=Math.round(j.current.temperature_2m); let s=Math.round(j.current.wind_speed_10m);
+let c=j.current.weather_code; let cond=c==0?'Clear':c<=3?'Partly Cloudy':c<=48?'Foggy':c<=67?'Rain':c<=77?'Snow':'Cloudy';
+document.getElementById('wText').textContent=t+'°F '+cond+' • Wind '+s+' mph';
+}catch(e){document.getElementById('wText').textContent='Weather Unavailable';}
+}
+loadWeather(); setInterval(loadWeather,600000);
+</script>
+</body>
+</html>
