@@ -134,6 +134,30 @@ document.getElementById('wText').textContent=t+'°F '+cond+' • Wind '+s+' mph'
 }catch(e){document.getElementById('wText').textContent='Weather Unavailable';}
 }
 loadWeather(); setInterval(loadWeather,600000);
+
+// AUTO-SCROLL EACH BLUE BOX - BEGINNING TO END, THEN BACK TO TOP
+document.querySelectorAll('.inner').forEach(box=>{
+let paused = false;
+let waiting = 0;
+box.addEventListener('mouseenter', ()=> paused = true);
+box.addEventListener('mouseleave', ()=> paused = false);
+box.addEventListener('touchstart', ()=> paused = true);
+box.addEventListener('touchend', ()=> paused = false);
+setInterval(()=>{
+if(paused) return;
+let max = box.scrollHeight - box.clientHeight;
+if(max <= 5) return;
+if(box.scrollTop >= max){
+waiting++;
+if(waiting > 60){
+box.scrollTop = 0;
+waiting = 0;
+}
+} else {
+box.scrollTop += 0.6;
+}
+}, 50);
+});
 </script>
 </body>
 </html>
